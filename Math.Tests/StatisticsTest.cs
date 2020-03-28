@@ -40,7 +40,7 @@ namespace Math.Tests
         public void TestAverage()
         {
 
-            var array = new double[] { 2, 2, 2, 1, 5, 8, 4, 6, 6 };
+            var array = new double[] { 3, 1, -5, 4, 6, -5 };
             var expected_average = 44;
             var x = Statistics.Median(array);
             var m = Statistics.Mean(array);

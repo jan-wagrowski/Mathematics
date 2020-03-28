@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Math
+﻿namespace Mathematics
 {
+    using System;
+
     public class Statistics
     {
         public static T Min<T>(T[] array) where T : IComparable
@@ -54,9 +54,9 @@ namespace Math
             Array.Sort(array);
 
             return
-                length % 2 == 0 
-                ? (array[length / 2  -1] + array[length / 2 ]) / 2
-                : array[length / 2];            
+                length % 2 == 0
+                ? (array[length / 2 - 1] + array[length / 2]) / 2
+                : array[length / 2];
         }
 
         public static double Median(params int[] array)
@@ -72,7 +72,7 @@ namespace Math
 
             return
                 length % 2 == 0
-                ? (array[length / 2-1] + array[length / 2 ]) / 2
+                ? (array[length / 2 - 1] + array[length / 2]) / 2
                 : array[length / 2];
         }
 
@@ -96,7 +96,7 @@ namespace Math
                     if (array[i].CompareTo(array[j]) == 0)
                     {
                         counter++;
-                    }                    
+                    }
                 }
                 if (counter > dominant_counter)
                 {
@@ -179,8 +179,6 @@ namespace Math
             return System.Math.Pow(product, 1.0 / length);
         }
 
-
-
         public static double Sum(params double[] array)
         {
             double sum = 0.0;
@@ -214,6 +212,42 @@ namespace Math
             }
 
             return sum / sum_weight;
+        }
+
+
+        public static double Variance(params double[] array)
+        {
+            double mean = Statistics.Mean(array);
+            double sum = 0.0;
+
+            foreach (double item in array)
+            {
+                sum += System.Math.Pow(mean - item, 2.0);
+            }
+            return sum / (double)(array.Length);
+        }
+
+
+        public static double PopulationVariance(params double[] array)
+        {
+            double mean = Statistics.Mean(array);
+            double sum = 0.0;
+
+            foreach (double item in array)
+            {
+                sum += System.Math.Pow(mean - item, 2.0);
+            }
+            return sum / (double)(array.Length - 1);
+        }
+
+        public static double StandardDiviation(params double[] array)
+        {
+            return System.Math.Sqrt(PopulationVariance(array));            
+        }
+
+        public static double PopulationStandardDiviation(params double[] array)
+        {
+            return System.Math.Sqrt(PopulationVariance(array));
         }
     }
 }
